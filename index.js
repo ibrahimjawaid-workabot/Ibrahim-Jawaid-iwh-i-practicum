@@ -20,12 +20,9 @@ const PRIVATE_APP_ACCESS = '';
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
-// * Code for Route 3 goes here
 
-/** 
-* * This is sample code to give you a reference for how you should structure your calls. 
 
-* * App.get sample
+   App.get sample
 app.get('/contacts', async (req, res) => {
     const contacts = 'https://api.hubspot.com/crm/v3/objects/contacts';
     const headers = {
@@ -41,7 +38,7 @@ app.get('/contacts', async (req, res) => {
     }
 });
 
-* * App.post sample
+
 app.post('/update', async (req, res) => {
     const update = {
         properties: {
@@ -64,8 +61,8 @@ app.post('/update', async (req, res) => {
     }
 
 });
-*/
 
 
-// * Localhost
+
+Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
