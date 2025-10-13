@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+  body
+    h1= title
+    a(href="/") Return to the homepage
+    form(action="/update-cobj" method="POST")
+      label(for="flavor") Flavor:
+      input(type="text" name="flavor" required)
+      br
+      label(for="crust") Crust:
+      input(type="text" name="crust" required)
+      br
+      label(for="toppings") Toppings:
+      input(type="text" name="toppings" required)
+      br
+      button(type="submit") Submit

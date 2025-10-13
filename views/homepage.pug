@@ -7,13 +7,14 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// ⚠️ Insert your HubSpot Private App token here (DO NOT COMMIT THIS TO GITHUB)
 const PRIVATE_APP_ACCESS = 'YOUR_PRIVATE_APP_ACCESS_TOKEN_HERE';
 
+// Replace this with your custom object API name
+const CUSTOM_OBJECT = 'pizzas'; // Example: if your custom object is "pizzas" in HubSpot
 
-const CUSTOM_OBJECT = 'pizzas'; 
 
-
+// 🏠 ROUTE 1 — Homepage ("/")
 app.get('/', async (req, res) => {
     const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT}?properties=flavor,crust,toppings`;
 
