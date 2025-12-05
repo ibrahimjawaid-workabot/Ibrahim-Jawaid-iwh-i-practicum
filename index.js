@@ -15,11 +15,11 @@ const headers = {
 };
 // TODO: ROUTE 1 - Homepage to list all custom objects
 app.get('/', async (req, res) => {
-    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}?properties=Name,Author,Summary`;
+    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}?properties=Name,Type,Age`;
     try {
         const resp = await axios.get(url, { headers });
         const data = resp.data.results;
-        res.render('homepage', { title: 'Homepage | HubSpot Practicum', data });
+        res.render('homepage', { title: 'Homepage | Integrating With HubSpot I Practicum', data });
     } catch (error) {
         console.error('Error fetching custom objects:', error.response ? error.response.data : error.message);
         res.send('Error fetching data');
@@ -31,12 +31,12 @@ app.get('/update-cobj', (req, res) => {
 });
 // TODO: ROUTE 3 - Handle form POST to create a new custom object
 app.post('/update-cobj', async (req, res) => {
-    const { name, author, summary } = req.body;
+    const { name, typeofpet, age } = req.body;
     const newObject = {
         properties: {
             "Name": name,
-            "Author": author,
-            "Summary": summary
+            "Type": typeofpet,
+            "Age": age
         }
     };
     const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}`;

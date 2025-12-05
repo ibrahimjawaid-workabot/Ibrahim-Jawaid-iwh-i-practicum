@@ -1,17 +1,16 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-
+require('dotenv').config(); 
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ⚠️ Insert your HubSpot Private App token here (DO NOT COMMIT THIS TO GITHUB)
-const PRIVATE_APP_ACCESS = 'YOUR_PRIVATE_APP_ACCESS_TOKEN_HERE';
+const PRIVATE_APP_ACCESS = process.env.HUBSPOT_API_KEY;
 
 // Replace this with your custom object API name
-const CUSTOM_OBJECT = 'pizzas'; // Example: if your custom object is "pizzas" in HubSpot
+const CUSTOM_OBJECT = 'pets'; 
 
 
 // 🏠 ROUTE 1 — Homepage ("/")
