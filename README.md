@@ -4,7 +4,7 @@ This repository is for the Integrating With HubSpot I: Foundations course. This 
 
 To read the full directions, please go to the [practicum instructions](https://app.hubspot.com/academy/l/tracks/1092124/1093824/5493?language=en).
 
-Here is the link for the custom object:  https://app.hubspot.com/contacts/50586796/objects/2-51444148/views/all/list
+Here is the link for the custom object: https://app.hubspot.com/contacts/50586796/objects/2-54073120/views/all/list
 
 ___
 ## Tips:
