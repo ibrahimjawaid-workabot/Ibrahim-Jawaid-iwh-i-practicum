@@ -6,16 +6,16 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const PRIVATE_APP_ACCESS = process.env.HUBSPOT_API_KEY;
+const HUBSPOT_PRIVATE_APP_TOKEN = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
 const CUSTOM_OBJECT_TYPE = process.env.CUSTOM_OBJECT_TYPE;
 // Headers for HubSpot API calls
 const headers = {
-    Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+    Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_TOKEN}`,
     'Content-Type': 'application/json'
 };
 // TODO: ROUTE 1 - Homepage to list all custom objects
 app.get('/', async (req, res) => {
-    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}?properties=Name,Type,Age`;
+    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}?properties=name,type,age`;
     try {
         const resp = await axios.get(url, { headers });
         const data = resp.data.results;
@@ -34,9 +34,9 @@ app.post('/update-cobj', async (req, res) => {
     const { name, typeofpet, age } = req.body;
     const newObject = {
         properties: {
-            "Name": name,
-            "Type": typeofpet,
-            "Age": age
+            "name": name,
+            "type": typeofpet,
+            "age": age
         }
     };
     const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}`;

@@ -5,14 +5,18 @@ html
   body
     h1= title
     a(href="/") Return to the homepage
+
     form(action="/update-cobj" method="POST")
-      label(for="flavor") Flavor:
-      input(type="text" name="flavor" required)
+      label(for="name") Name:
+      input(type="text" name="name" required)
       br
-      label(for="crust") Crust:
-      input(type="text" name="crust" required)
+
+      label(for="typeofpet") Type:
+      input(type="text" name="typeofpet" required)
       br
-      label(for="toppings") Toppings:
-      input(type="text" name="toppings" required)
+
+      label(for="age") Age:
+      input(type="number" name="age" required)
       br
+
       button(type="submit") Submit

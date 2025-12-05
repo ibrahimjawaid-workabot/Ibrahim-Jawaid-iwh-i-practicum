@@ -1,74 +1,27 @@
-const express = require('express');
-const axios = require('axios');
-const app = express();
-require('dotenv').config(); 
-app.set('view engine', 'pug');
-app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+doctype html
+html
+  head
+    title= title
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/style.css")
+  body
+    header
+      h1 Custom Objects List
+      a(href="/update-cobj") Create New Custom Object
 
-const PRIVATE_APP_ACCESS = process.env.HUBSPOT_API_KEY;
+    main
+      if !data || data.length === 0
+        p No custom objects found.
+      else
+        .container
+          each obj in data
+            - const props = obj.properties || {}
+            .item
+              h3= props.name || 'Unnamed'
+              p Type: #{props.type || 'N/A'}
+              p Age: #{props.age || 'N/A'}
+              p ID: #{obj.id}
 
-// Replace this with your custom object API name
-const CUSTOM_OBJECT = 'pets'; 
-
-
-// 🏠 ROUTE 1 — Homepage ("/")
-app.get('/', async (req, res) => {
-    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT}?properties=flavor,crust,toppings`;
-
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    };
-
-    try {
-        const resp = await axios.get(url, { headers });
-        const records = resp.data.results;
-        res.render('homepage', { 
-            title: 'Homepage | Integrating With HubSpot I Practicum',
-            records
-        });
-    } catch (err) {
-        console.error('Error fetching custom objects:', err.message);
-        res.status(500).send('Error loading data');
-    }
-});
-
-
-// 🧾 ROUTE 2 — Form page ("/update-cobj")
-app.get('/update-cobj', (req, res) => {
-    res.render('updates', { 
-        title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' 
-    });
-});
-
-
-// 💾 ROUTE 3 — Form submission (POST "/update-cobj")
-app.post('/update-cobj', async (req, res) => {
-    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT}`;
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    };
-
-    const data = {
-        properties: {
-            flavor: req.body.flavor,
-            crust: req.body.crust,
-            toppings: req.body.toppings
-        }
-    };
-
-    try {
-        await axios.post(url, data, { headers });
-        res.redirect('/');
-    } catch (err) {
-        console.error('Error creating custom object:', err.message);
-        res.status(500).send('Error creating record');
-    }
-});
-
-
-// 🚀 Start the server
-app.listen(3000, () => console.log('Listening on http://localhost:3000'));
+    footer
+      p © 2025 HubSpot Integration Practicum
