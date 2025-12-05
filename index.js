@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 });
 // TODO: ROUTE 2 - Form to create a new custom object
 app.get('/update-cobj', (req, res) => {
-    res.render('updates', { title: 'Update Custom Object Form | HubSpot Practicum' });
+    res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
 });
 // TODO: ROUTE 3 - Handle form POST to create a new custom object
 app.post('/update-cobj', async (req, res) => {
